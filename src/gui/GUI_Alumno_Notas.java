@@ -37,24 +37,25 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
         panelNotaFinal = new javax.swing.JPanel();
         textFinal = new javax.swing.JLabel();
         textNotaFinall = new javax.swing.JTextField();
+        labelDisplayMateria = new javax.swing.JLabel();
         panelSysdate = new javax.swing.JPanel();
         textSysdate = new javax.swing.JTextField();
         botonVolver = new javax.swing.JButton();
         panelOpciones = new javax.swing.JPanel();
         panelBotones = new javax.swing.JPanel();
         botonTodasMaterias = new javax.swing.JButton();
-        botonTodasMaterias1 = new javax.swing.JButton();
-        botonTodasMaterias2 = new javax.swing.JButton();
-        botonTodasMaterias4 = new javax.swing.JButton();
-        botonTodasMaterias3 = new javax.swing.JButton();
-        botonTodasMaterias6 = new javax.swing.JButton();
-        botonTodasMaterias5 = new javax.swing.JButton();
-        labelDisplayMateria = new javax.swing.JLabel();
+        botonBBDD = new javax.swing.JButton();
+        botonEntornos = new javax.swing.JButton();
+        botonProgramacion = new javax.swing.JButton();
+        botonLenguajeM = new javax.swing.JButton();
+        botonSistemas = new javax.swing.JButton();
+        botonIPE = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(65, 70, 80));
         setFocusable(false);
-        setMaximumSize(new java.awt.Dimension(1500, 1200));
-        setPreferredSize(new java.awt.Dimension(1500, 1200));
+        setMaximumSize(new java.awt.Dimension(1500, 778));
+        setMinimumSize(new java.awt.Dimension(1500, 778));
+        setPreferredSize(new java.awt.Dimension(1500, 778));
 
         panelNotas.setMaximumSize(new java.awt.Dimension(1212, 800));
 
@@ -130,6 +131,9 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
         });
         panelNotaFinal.add(textNotaFinall);
 
+        labelDisplayMateria.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        labelDisplayMateria.setText("MATERIA");
+
         javax.swing.GroupLayout panelNotasLayout = new javax.swing.GroupLayout(panelNotas);
         panelNotas.setLayout(panelNotasLayout);
         panelNotasLayout.setHorizontalGroup(
@@ -141,17 +145,22 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
                         .addComponent(panelNotasBaseEntornosProgra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelNotasLayout.createSequentialGroup()
                         .addGap(198, 198, 198)
-                        .addComponent(panelNotaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(panelNotaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelNotasLayout.createSequentialGroup()
+                        .addGap(249, 249, 249)
+                        .addComponent(labelDisplayMateria)))
                 .addGap(50, 50, 50))
         );
         panelNotasLayout.setVerticalGroup(
             panelNotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelNotasLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(11, 11, 11)
+                .addComponent(labelDisplayMateria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelNotasBaseEntornosProgra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelNotaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         panelSysdate.setLayout(new java.awt.GridBagLayout());
@@ -174,23 +183,28 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
         botonTodasMaterias.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         botonTodasMaterias.setText("Todas las materias");
 
-        botonTodasMaterias1.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        botonTodasMaterias1.setText("Base de datos");
+        botonBBDD.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        botonBBDD.setText("Base de datos");
 
-        botonTodasMaterias2.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        botonTodasMaterias2.setText("Entornos de desarrollo");
+        botonEntornos.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        botonEntornos.setText("Entornos de desarrollo");
 
-        botonTodasMaterias4.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        botonTodasMaterias4.setText("Programación");
+        botonProgramacion.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        botonProgramacion.setText("Programación");
 
-        botonTodasMaterias3.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        botonTodasMaterias3.setText("Lenguaje de marcas");
+        botonLenguajeM.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        botonLenguajeM.setText("Lenguaje de marcas");
 
-        botonTodasMaterias6.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        botonTodasMaterias6.setText("Sistemas informáticos");
+        botonSistemas.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        botonSistemas.setText("Sistemas informáticos");
 
-        botonTodasMaterias5.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        botonTodasMaterias5.setText("IPE");
+        botonIPE.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        botonIPE.setText("IPE");
+        botonIPE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonIPEActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBotonesLayout = new javax.swing.GroupLayout(panelBotones);
         panelBotones.setLayout(panelBotonesLayout);
@@ -199,14 +213,14 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
             .addGroup(panelBotonesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonTodasMaterias1)
-                    .addComponent(botonTodasMaterias4)
-                    .addComponent(botonTodasMaterias3)
-                    .addComponent(botonTodasMaterias2)
-                    .addComponent(botonTodasMaterias5)
+                    .addComponent(botonBBDD)
+                    .addComponent(botonProgramacion)
+                    .addComponent(botonLenguajeM)
+                    .addComponent(botonEntornos)
+                    .addComponent(botonIPE)
                     .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(botonTodasMaterias)
-                        .addComponent(botonTodasMaterias6)))
+                        .addComponent(botonSistemas)))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
         panelBotonesLayout.setVerticalGroup(
@@ -215,17 +229,17 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(botonTodasMaterias)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(botonTodasMaterias5)
+                .addComponent(botonIPE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonTodasMaterias1)
+                .addComponent(botonBBDD)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonTodasMaterias4)
+                .addComponent(botonProgramacion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonTodasMaterias3)
+                .addComponent(botonLenguajeM)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonTodasMaterias6)
+                .addComponent(botonSistemas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonTodasMaterias2)
+                .addComponent(botonEntornos)
                 .addContainerGap())
         );
 
@@ -245,78 +259,70 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
                 .addGap(20, 20, 20))
         );
 
-        labelDisplayMateria.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
-        labelDisplayMateria.setText("MATERIA");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(148, 148, 148)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelNotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(252, 252, 252)
-                        .addComponent(labelDisplayMateria)
-                        .addGap(259, 259, 259)))
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addGap(265, 265, 265)
+                .addComponent(panelNotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1179, Short.MAX_VALUE)
                 .addComponent(panelSysdate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelSysdate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(panelNotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panelSysdate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(207, 207, 207)
-                        .addComponent(panelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(labelDisplayMateria)
-                        .addGap(18, 18, 18)
-                        .addComponent(panelNotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(230, Short.MAX_VALUE))
+                        .addComponent(panelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(129, 129, 129))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void textNotaBBDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNotaBBDDActionPerformed
-        // TODO add your handling code here:
+        this.setBackground(new java.awt.Color(250, 183, 37));
     }//GEN-LAST:event_textNotaBBDDActionPerformed
 
     private void textNotaEntornosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNotaEntornosActionPerformed
-        // TODO add your handling code here:
+        this.setBackground(new java.awt.Color(250, 183, 37));
     }//GEN-LAST:event_textNotaEntornosActionPerformed
 
     private void textNotaProgramacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNotaProgramacionActionPerformed
-        // TODO add your handling code here:
+        this.setBackground(new java.awt.Color(250, 183, 37));
     }//GEN-LAST:event_textNotaProgramacionActionPerformed
 
     private void textNotaFinallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNotaFinallActionPerformed
-        // TODO add your handling code here:
+        this.setBackground(new java.awt.Color(250, 183, 37));
     }//GEN-LAST:event_textNotaFinallActionPerformed
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
-        // TODO add your handling code here:
+        this.setBackground(new java.awt.Color(250, 183, 37));
     }//GEN-LAST:event_botonVolverActionPerformed
+
+    private void botonIPEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIPEActionPerformed
+        this.setBackground(new java.awt.Color(250, 183, 37));
+    }//GEN-LAST:event_botonIPEActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonBBDD;
+    private javax.swing.JButton botonEntornos;
+    private javax.swing.JButton botonIPE;
+    private javax.swing.JButton botonLenguajeM;
+    private javax.swing.JButton botonProgramacion;
+    private javax.swing.JButton botonSistemas;
     private javax.swing.JButton botonTodasMaterias;
-    private javax.swing.JButton botonTodasMaterias1;
-    private javax.swing.JButton botonTodasMaterias2;
-    private javax.swing.JButton botonTodasMaterias3;
-    private javax.swing.JButton botonTodasMaterias4;
-    private javax.swing.JButton botonTodasMaterias5;
-    private javax.swing.JButton botonTodasMaterias6;
     private javax.swing.JButton botonVolver;
     private javax.swing.JLabel labelDisplayMateria;
     private javax.swing.JPanel panelBotones;

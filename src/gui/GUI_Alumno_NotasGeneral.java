@@ -47,8 +47,9 @@ public class GUI_Alumno_NotasGeneral extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(65, 70, 80));
         setFocusable(false);
-        setMaximumSize(new java.awt.Dimension(1500, 1200));
-        setPreferredSize(new java.awt.Dimension(1500, 1200));
+        setMaximumSize(new java.awt.Dimension(1500, 778));
+        setMinimumSize(new java.awt.Dimension(1500, 778));
+        setPreferredSize(new java.awt.Dimension(1500, 778));
 
         panelNotas.setMaximumSize(new java.awt.Dimension(1212, 800));
 
@@ -203,13 +204,13 @@ public class GUI_Alumno_NotasGeneral extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1173, Short.MAX_VALUE)
                 .addComponent(panelSysdate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(105, 105, 105)
+                .addGap(254, 254, 254)
                 .addComponent(panelNotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,9 +219,9 @@ public class GUI_Alumno_NotasGeneral extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelSysdate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
+                .addGap(215, 215, 215)
                 .addComponent(panelNotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(226, 226, 226))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
