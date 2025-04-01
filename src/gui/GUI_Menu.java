@@ -4,6 +4,8 @@
  */
 package gui;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Eliabe
@@ -89,9 +91,8 @@ public class GUI_Menu extends javax.swing.JFrame {
                         .addGap(301, 301, 301)
                         .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(botonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(botonEmpezar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonCreditos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(botonEmpezar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonCreditos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(190, 190, 190))
         );
         FondoLayout.setVerticalGroup(
@@ -101,7 +102,7 @@ public class GUI_Menu extends javax.swing.JFrame {
                 .addComponent(Titulo)
                 .addGap(36, 36, 36)
                 .addComponent(Logo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(botonEmpezar1)
                 .addGap(18, 18, 18)
                 .addComponent(botonCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -116,13 +117,13 @@ public class GUI_Menu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,11 +134,19 @@ public class GUI_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCreditosActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-        System.exit(0);
+         dispose();
     }//GEN-LAST:event_botonSalirActionPerformed
-
+    public void showMe(JPanel jp){
+        
+        
+        Fondo.removeAll();
+        Fondo.add(jp);
+        Fondo.revalidate();
+        Fondo.repaint();
+    }
     private void botonEmpezar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpezar1ActionPerformed
-        // TODO add your handling code here:
+                showMe(new GUI_Login());
+// TODO add your handling code here:
     }//GEN-LAST:event_botonEmpezar1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

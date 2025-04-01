@@ -26,7 +26,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="Fondo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -34,7 +34,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="Fondo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,10 +67,8 @@
                           <EmptySpace min="-2" pref="301" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="botonSalir" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="botonEmpezar1" max="32767" attributes="0"/>
-                                  <Component id="botonCreditos" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="botonEmpezar1" max="32767" attributes="0"/>
+                              <Component id="botonCreditos" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -85,7 +83,7 @@
                   <Component id="Titulo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="36" pref="36" max="-2" attributes="0"/>
                   <Component id="Logo" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <EmptySpace pref="32" max="32767" attributes="0"/>
                   <Component id="botonEmpezar1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="botonCreditos" min="-2" pref="41" max="-2" attributes="0"/>
