@@ -9,7 +9,7 @@ package gui;
  * @author Eliabe
  */
 public class GUI_Alumno_NotasGeneral extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form GUI_Alumno_Notas
      */
@@ -221,7 +221,7 @@ public class GUI_Alumno_NotasGeneral extends javax.swing.JPanel {
                     .addComponent(panelSysdate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(215, 215, 215)
                 .addComponent(panelNotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(242, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

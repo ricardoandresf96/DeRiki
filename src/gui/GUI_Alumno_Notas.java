@@ -4,17 +4,28 @@
  */
 package gui;
 
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author Eliabe
  */
 public class GUI_Alumno_Notas extends javax.swing.JPanel {
-
+    private GUI_Menu MainP;
+    public int alumnoID;
+    
+    public void setAlumnoID (int alumnoID){
+    this.alumnoID=alumnoID;
+    ideal.setText("Este es "+ alumnoID);
+    revalidate();
+    repaint();
+    }
     /**
      * Creates new form GUI_Alumno_Notas
      */
     public GUI_Alumno_Notas() {
         initComponents();
+        
     }
 
     /**
@@ -50,12 +61,13 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
         botonLenguajeM = new javax.swing.JButton();
         botonSistemas = new javax.swing.JButton();
         botonIPE = new javax.swing.JButton();
+        ideal = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(65, 70, 80));
         setFocusable(false);
         setMaximumSize(new java.awt.Dimension(1500, 778));
         setMinimumSize(new java.awt.Dimension(1500, 778));
-        setPreferredSize(new java.awt.Dimension(1500, 778));
+        setPreferredSize(new java.awt.Dimension(1400, 770));
 
         panelNotas.setMaximumSize(new java.awt.Dimension(1212, 800));
 
@@ -173,7 +185,7 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
         botonVolver.setBackground(new java.awt.Color(51, 51, 51));
         botonVolver.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
         botonVolver.setForeground(new java.awt.Color(255, 255, 255));
-        botonVolver.setText("Volver");
+        botonVolver.setText("Sair");
         botonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonVolverActionPerformed(evt);
@@ -243,36 +255,47 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        ideal.setText("Hola1");
+
         javax.swing.GroupLayout panelOpcionesLayout = new javax.swing.GroupLayout(panelOpciones);
         panelOpciones.setLayout(panelOpcionesLayout);
         panelOpcionesLayout.setHorizontalGroup(
             panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelOpcionesLayout.createSequentialGroup()
-                .addComponent(panelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 15, Short.MAX_VALUE))
+                .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelOpcionesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelOpcionesLayout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addComponent(ideal)))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         panelOpcionesLayout.setVerticalGroup(
             panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOpcionesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(ideal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(265, 265, 265)
-                .addComponent(panelNotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1179, Short.MAX_VALUE)
                 .addComponent(panelSysdate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(panelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(234, 234, 234)
+                .addComponent(panelNotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,7 +330,11 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
     }//GEN-LAST:event_textNotaFinallActionPerformed
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
-        this.setBackground(new java.awt.Color(250, 183, 37));
+    SwingUtilities.getWindowAncestor(botonVolver).dispose();
+    GUI_Menu mainP = new GUI_Menu();
+
+    mainP.showMe(new GUI_Login());
+    mainP.setVisible(true);
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void botonIPEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIPEActionPerformed
@@ -324,6 +351,7 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
     private javax.swing.JButton botonSistemas;
     private javax.swing.JButton botonTodasMaterias;
     private javax.swing.JButton botonVolver;
+    private javax.swing.JLabel ideal;
     private javax.swing.JLabel labelDisplayMateria;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelNotaFinal;
