@@ -4,6 +4,8 @@
  */
 package gui;
 
+import java.sql.*;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -11,21 +13,52 @@ import javax.swing.SwingUtilities;
  * @author Eliabe
  */
 public class GUI_Alumno_Notas extends javax.swing.JPanel {
+
     private GUI_Menu MainP;
     public int alumnoID;
-    
-    public void setAlumnoID (int alumnoID){
-    this.alumnoID=alumnoID;
-    ideal.setText("Este es "+ alumnoID);
-    revalidate();
-    repaint();
+    private String url = "jdbc:mariadb://localhost:3306/gestion_notas";
+    private String user = "root";
+    private String password = "alumno";
+
+    public void setAlumnoID(int alumnoID) {
+        this.alumnoID = alumnoID;
+        ideal.setText("Este es " + alumnoID);
+        revalidate();
+        repaint();
     }
+
     /**
      * Creates new form GUI_Alumno_Notas
      */
     public GUI_Alumno_Notas() {
         initComponents();
-        
+
+    }
+
+    public void mostrarNotasAlumnoPorModulo(int idModulo) {
+        // Consulta SQL para obtener las notas del alumno en un módulo específico
+        String sql = "SELECT nota_1ev, nota_2ev, nota_3ev, nota_final FROM notas "
+                + "WHERE id_alumno = ? AND id_modulo = ?";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // Establecer parámetros
+            pstmt.setInt(1, this.alumnoID); // ID del alumno (variable de instancia)
+            pstmt.setInt(2, idModulo);      // ID del módulo (parámetro del método)
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    lblFirst.setText(rs.getObject("nota_1ev") != null ? rs.getObject("nota_1ev").toString() : "N/A");
+                    lblSecond.setText(rs.getObject("nota_2ev") != null ? rs.getObject("nota_2ev").toString() : "N/A");
+                    lblThird.setText(rs.getObject("nota_3ev") != null ? rs.getObject("nota_3ev").toString() : "N/A");
+                    lblFinal.setText(rs.getObject("nota_final") != null ? rs.getObject("nota_final").toString() : "N/A");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Todavia no tienes notas en este Modulo, la culpa es de Elvis");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al consultar las notas: " + e.getMessage());
+        }
     }
 
     /**
@@ -42,13 +75,13 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
         textBBBD = new javax.swing.JLabel();
         textEntornos = new javax.swing.JLabel();
         textProgramacion = new javax.swing.JLabel();
-        textNotaBBDD = new javax.swing.JTextField();
-        textNotaEntornos = new javax.swing.JTextField();
-        textNotaProgramacion = new javax.swing.JTextField();
+        lblFirst = new javax.swing.JTextField();
+        lblSecond = new javax.swing.JTextField();
+        lblThird = new javax.swing.JTextField();
         panelNotaFinal = new javax.swing.JPanel();
         textFinal = new javax.swing.JLabel();
-        textNotaFinall = new javax.swing.JTextField();
-        labelDisplayMateria = new javax.swing.JLabel();
+        lblFinal = new javax.swing.JTextField();
+        lblMateria = new javax.swing.JLabel();
         panelSysdate = new javax.swing.JPanel();
         textSysdate = new javax.swing.JTextField();
         botonVolver = new javax.swing.JButton();
@@ -60,7 +93,7 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
         botonProgramacion = new javax.swing.JButton();
         botonLenguajeM = new javax.swing.JButton();
         botonSistemas = new javax.swing.JButton();
-        botonIPE = new javax.swing.JButton();
+        botonInglesd = new javax.swing.JButton();
         ideal = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(65, 70, 80));
@@ -91,38 +124,38 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
         textProgramacion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panelNotasBaseEntornosProgra.add(textProgramacion);
 
-        textNotaBBDD.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
-        textNotaBBDD.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        textNotaBBDD.setText("0.0");
-        textNotaBBDD.setFocusable(false);
-        textNotaBBDD.addActionListener(new java.awt.event.ActionListener() {
+        lblFirst.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        lblFirst.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        lblFirst.setText("0.0");
+        lblFirst.setFocusable(false);
+        lblFirst.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textNotaBBDDActionPerformed(evt);
+                lblFirstActionPerformed(evt);
             }
         });
-        panelNotasBaseEntornosProgra.add(textNotaBBDD);
+        panelNotasBaseEntornosProgra.add(lblFirst);
 
-        textNotaEntornos.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
-        textNotaEntornos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        textNotaEntornos.setText("0.0");
-        textNotaEntornos.setFocusable(false);
-        textNotaEntornos.addActionListener(new java.awt.event.ActionListener() {
+        lblSecond.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        lblSecond.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        lblSecond.setText("0.0");
+        lblSecond.setFocusable(false);
+        lblSecond.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textNotaEntornosActionPerformed(evt);
+                lblSecondActionPerformed(evt);
             }
         });
-        panelNotasBaseEntornosProgra.add(textNotaEntornos);
+        panelNotasBaseEntornosProgra.add(lblSecond);
 
-        textNotaProgramacion.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
-        textNotaProgramacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        textNotaProgramacion.setText("0.0");
-        textNotaProgramacion.setFocusable(false);
-        textNotaProgramacion.addActionListener(new java.awt.event.ActionListener() {
+        lblThird.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        lblThird.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        lblThird.setText("0.0");
+        lblThird.setFocusable(false);
+        lblThird.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textNotaProgramacionActionPerformed(evt);
+                lblThirdActionPerformed(evt);
             }
         });
-        panelNotasBaseEntornosProgra.add(textNotaProgramacion);
+        panelNotasBaseEntornosProgra.add(lblThird);
 
         panelNotaFinal.setLayout(new java.awt.GridLayout(2, 3, 35, 10));
 
@@ -132,19 +165,19 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
         textFinal.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panelNotaFinal.add(textFinal);
 
-        textNotaFinall.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
-        textNotaFinall.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        textNotaFinall.setText("0.0");
-        textNotaFinall.setFocusable(false);
-        textNotaFinall.addActionListener(new java.awt.event.ActionListener() {
+        lblFinal.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        lblFinal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        lblFinal.setText("0.0");
+        lblFinal.setFocusable(false);
+        lblFinal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textNotaFinallActionPerformed(evt);
+                lblFinalActionPerformed(evt);
             }
         });
-        panelNotaFinal.add(textNotaFinall);
+        panelNotaFinal.add(lblFinal);
 
-        labelDisplayMateria.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
-        labelDisplayMateria.setText("MATERIA");
+        lblMateria.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        lblMateria.setText("MATERIA");
 
         javax.swing.GroupLayout panelNotasLayout = new javax.swing.GroupLayout(panelNotas);
         panelNotas.setLayout(panelNotasLayout);
@@ -160,14 +193,14 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
                         .addComponent(panelNotaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelNotasLayout.createSequentialGroup()
                         .addGap(249, 249, 249)
-                        .addComponent(labelDisplayMateria)))
+                        .addComponent(lblMateria)))
                 .addGap(50, 50, 50))
         );
         panelNotasLayout.setVerticalGroup(
             panelNotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelNotasLayout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addComponent(labelDisplayMateria)
+                .addComponent(lblMateria)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelNotasBaseEntornosProgra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -197,24 +230,49 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
 
         botonBBDD.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         botonBBDD.setText("Base de datos");
+        botonBBDD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBBDDActionPerformed(evt);
+            }
+        });
 
         botonEntornos.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         botonEntornos.setText("Entornos de desarrollo");
+        botonEntornos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEntornosActionPerformed(evt);
+            }
+        });
 
         botonProgramacion.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         botonProgramacion.setText("Programación");
+        botonProgramacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonProgramacionActionPerformed(evt);
+            }
+        });
 
         botonLenguajeM.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         botonLenguajeM.setText("Lenguaje de marcas");
+        botonLenguajeM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonLenguajeMActionPerformed(evt);
+            }
+        });
 
         botonSistemas.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         botonSistemas.setText("Sistemas informáticos");
-
-        botonIPE.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        botonIPE.setText("IPE");
-        botonIPE.addActionListener(new java.awt.event.ActionListener() {
+        botonSistemas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonIPEActionPerformed(evt);
+                botonSistemasActionPerformed(evt);
+            }
+        });
+
+        botonInglesd.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        botonInglesd.setText("Ingles para tontos");
+        botonInglesd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonInglesdActionPerformed(evt);
             }
         });
 
@@ -229,7 +287,7 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
                     .addComponent(botonProgramacion)
                     .addComponent(botonLenguajeM)
                     .addComponent(botonEntornos)
-                    .addComponent(botonIPE)
+                    .addComponent(botonInglesd)
                     .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(botonTodasMaterias)
                         .addComponent(botonSistemas)))
@@ -241,7 +299,7 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(botonTodasMaterias)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(botonIPE)
+                .addComponent(botonInglesd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonBBDD)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -307,52 +365,78 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(panelSysdate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(207, 207, 207)
+                        .addGap(192, 192, 192)
                         .addComponent(panelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(129, 129, 129))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textNotaBBDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNotaBBDDActionPerformed
+    private void lblFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblFirstActionPerformed
         this.setBackground(new java.awt.Color(250, 183, 37));
-    }//GEN-LAST:event_textNotaBBDDActionPerformed
+    }//GEN-LAST:event_lblFirstActionPerformed
 
-    private void textNotaEntornosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNotaEntornosActionPerformed
+    private void lblSecondActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblSecondActionPerformed
         this.setBackground(new java.awt.Color(250, 183, 37));
-    }//GEN-LAST:event_textNotaEntornosActionPerformed
+    }//GEN-LAST:event_lblSecondActionPerformed
 
-    private void textNotaProgramacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNotaProgramacionActionPerformed
+    private void lblThirdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblThirdActionPerformed
         this.setBackground(new java.awt.Color(250, 183, 37));
-    }//GEN-LAST:event_textNotaProgramacionActionPerformed
+    }//GEN-LAST:event_lblThirdActionPerformed
 
-    private void textNotaFinallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNotaFinallActionPerformed
+    private void lblFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblFinalActionPerformed
         this.setBackground(new java.awt.Color(250, 183, 37));
-    }//GEN-LAST:event_textNotaFinallActionPerformed
+    }//GEN-LAST:event_lblFinalActionPerformed
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
-    SwingUtilities.getWindowAncestor(botonVolver).dispose();
-    GUI_Menu mainP = new GUI_Menu();
+        SwingUtilities.getWindowAncestor(botonVolver).dispose();
+        GUI_Menu mainP = new GUI_Menu();
 
-    mainP.showMe(new GUI_Login());
-    mainP.setVisible(true);
+        mainP.showMe(new GUI_Login());
+        mainP.setVisible(true);
     }//GEN-LAST:event_botonVolverActionPerformed
 
-    private void botonIPEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIPEActionPerformed
-        this.setBackground(new java.awt.Color(250, 183, 37));
-    }//GEN-LAST:event_botonIPEActionPerformed
+    private void botonInglesdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInglesdActionPerformed
+        mostrarNotasAlumnoPorModulo(6);
+    }//GEN-LAST:event_botonInglesdActionPerformed
+
+    private void botonBBDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBBDDActionPerformed
+        mostrarNotasAlumnoPorModulo(1);
+    }//GEN-LAST:event_botonBBDDActionPerformed
+
+    private void botonProgramacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProgramacionActionPerformed
+        mostrarNotasAlumnoPorModulo(2);
+
+    }//GEN-LAST:event_botonProgramacionActionPerformed
+
+    private void botonLenguajeMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLenguajeMActionPerformed
+        mostrarNotasAlumnoPorModulo(5);
+
+    }//GEN-LAST:event_botonLenguajeMActionPerformed
+
+    private void botonSistemasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSistemasActionPerformed
+        mostrarNotasAlumnoPorModulo(3);
+    }//GEN-LAST:event_botonSistemasActionPerformed
+
+    private void botonEntornosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEntornosActionPerformed
+        mostrarNotasAlumnoPorModulo(3);
+    }//GEN-LAST:event_botonEntornosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBBDD;
     private javax.swing.JButton botonEntornos;
-    private javax.swing.JButton botonIPE;
+    private javax.swing.JButton botonInglesd;
     private javax.swing.JButton botonLenguajeM;
     private javax.swing.JButton botonProgramacion;
     private javax.swing.JButton botonSistemas;
     private javax.swing.JButton botonTodasMaterias;
     private javax.swing.JButton botonVolver;
     private javax.swing.JLabel ideal;
-    private javax.swing.JLabel labelDisplayMateria;
+    private javax.swing.JTextField lblFinal;
+    private javax.swing.JTextField lblFirst;
+    private javax.swing.JLabel lblMateria;
+    private javax.swing.JTextField lblSecond;
+    private javax.swing.JTextField lblThird;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelNotaFinal;
     private javax.swing.JPanel panelNotas;
@@ -362,10 +446,6 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
     private javax.swing.JLabel textBBBD;
     private javax.swing.JLabel textEntornos;
     private javax.swing.JLabel textFinal;
-    private javax.swing.JTextField textNotaBBDD;
-    private javax.swing.JTextField textNotaEntornos;
-    private javax.swing.JTextField textNotaFinall;
-    private javax.swing.JTextField textNotaProgramacion;
     private javax.swing.JLabel textProgramacion;
     private javax.swing.JTextField textSysdate;
     // End of variables declaration//GEN-END:variables

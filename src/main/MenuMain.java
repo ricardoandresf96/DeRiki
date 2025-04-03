@@ -8,7 +8,6 @@ import javax.swing.*;
 
 public class MenuMain extends JFrame{
     
-    public cl
     
     public static void main(String[] args) {
         

@@ -4,7 +4,6 @@
  */
 package gui;
 
-
 import gui.GUI_Menu;
 import java.awt.BorderLayout;
 import java.awt.Menu;
@@ -22,16 +21,17 @@ import java.sql.*;
  * @author Vespertino
  */
 public class GUI_Login extends javax.swing.JPanel {
+
     private GUI_Menu mainP;
-    private static final String URL = "jdbc:mariadb://localhost:3307/vuelta";
+    private static final String URL = "jdbc:mariadb://localhost:3306/gestion_notas";
     private static final String USER = "root";
     private static final String PASSWORD = "alumno";
-    
+
     public GUI_Login() {
         initComponents();
         setVisible(true);
-        setSize(1000,1000);
-        
+        setSize(1000, 1000);
+
     }
 
     /**
@@ -164,47 +164,74 @@ public class GUI_Login extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private String calcularMD5(char[] contrasena) throws NoSuchAlgorithmException {
-    // Convertir char[] a String (necesario para MD5)
-    String password = new String(contrasena);
+        // Convertir char[] a String (necesario para MD5)
+        String password = new String(contrasena);
 
-    // Calcular MD5
-    MessageDigest md = MessageDigest.getInstance("MD5");
-    byte[] hashBytes = md.digest(password.getBytes());
+        // Calcular MD5
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        byte[] hashBytes = md.digest(password.getBytes());
 
-    // Convertir bytes a hexadecimal (para almacenamiento)
-    StringBuilder hexString = new StringBuilder();
-    for (byte b : hashBytes) {
-        hexString.append(String.format("%02x", b));
+        // Convertir bytes a hexadecimal (para almacenamiento)
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : hashBytes) {
+            hexString.append(String.format("%02x", b));
+        }
+
+        return hexString.toString();
     }
 
-    return hexString.toString();
-}
-    private  Connection getConnection() throws SQLException {
+    private Connection getConnection() throws SQLException {
         return (Connection) DriverManager.getConnection(URL, USER, PASSWORD);
     }
-    
-    private String buscarSomeone(){
-     // aqui coloca la tabla que quieres buscar 
-    String tabla ="";
-    // aqui se debe colocar el nombre de la variable, usuario o etc
-    String nombreUsuario= "";
-    // checa que despues de Select contraseña se debe comprobar con tabla
-    String sql = "SELECT contraseña FROM "+tabla+" when "+nombreUsuario+" = '"+userInput.getText()+"'"; // Tu consulta real
-        
-        try (Connection conn = getConnection()){
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql); 
+
+    private String buscarSomeone() {
+        // aqui coloca la tabla que quieres buscar 
+        String tabla = "alumno";
+        // aqui se debe colocar el nombre de la variable, usuario o etc
+        String nombreUsuario = "usuario_a";
+        // checa que despues de Select contraseña se debe comprobar con tabla
+        String sql = "SELECT contrasena_a FROM " + tabla + " where " + nombreUsuario + " = '" + userInput.getText() + "'"; // Tu consulta real
+
+        try (Connection conn = getConnection()) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
             // if acortado
-            return rs.next() ? rs.getString(1) : "Valor no encontrado";
-            
+            if (rs.next()) {
+                System.out.println(rs.getString(1));// Si hay una fila disponible
+                return rs.getString(1);    // Obtener el valor de la columna 1
+            } else {
+                return "Valor no encontrado"; // Mensaje alternativo
+            }
+
+        } catch (SQLException e) {
+            return "Error en búsqueda: " + e.getMessage();
+        }
+    }
+    private String buscarSomeone2() {
+        // aqui coloca la tabla que quieres buscar 
+        String tabla = "profesor";
+        // aqui se debe colocar el nombre de la variable, usuario o etc
+        String nombreUsuario = "usuario_p";
+        // checa que despues de Select contraseña se debe comprobar con tabla
+        String sql = "SELECT contrasena_p FROM " + tabla + " where " + nombreUsuario + " = '" + userInput.getText() + "'"; // Tu consulta real
+
+        try (Connection conn = getConnection()) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            // if acortado
+            if (rs.next()) {
+                System.out.println(rs.getString(1));// Si hay una fila disponible
+                return rs.getString(1);   // Obtener el valor de la columna 1
+            } else {
+                return "Valor no encontrado"; // Mensaje alternativo
+            }
+
         } catch (SQLException e) {
             return "Error en búsqueda: " + e.getMessage();
         }
     }
 
-
-    
-    private String buscarProfessione (){
+    /* private String buscarProfessione (){
      String tabla = "empleados"; // Nombre real de tu tabla
     String columnaNombre = "nombre"; // Columna para el nombre
     String columnaProfesion = "profesion"; // Columna para la profesión
@@ -222,48 +249,82 @@ public class GUI_Login extends javax.swing.JPanel {
         return "Error en profesión: " + e.getMessage();
     }
 
-    }
-    
-    private String verificarLogin(){
-        String md5InGame= buscarSomeone();
-        String occupazione=buscarProfessione(); 
-        
+    }*/
+    private String verificarLogin() {
+        String md5InGame = buscarSomeone();
+        String md5InGame2 = buscarSomeone2();
+        boolean professore = userInput.getText().contains("prof");
+        boolean studente = userInput.getText().contains("alumno");
+
         try {
             String md5Ingresado = calcularMD5(pwdInput.getPassword());
-            if (MessageDigest.isEqual(md5Ingresado.getBytes(), md5InGame.getBytes())&&occupazione.equals("profesor")) {
-            return "professore";
-        } else if(MessageDigest.isEqual(md5Ingresado.getBytes(), md5InGame.getBytes())&&occupazione.equals("estudiante")){
-            return "studente";
-        }
+            if (MessageDigest.isEqual(md5Ingresado.getBytes(), md5InGame2.getBytes()) && professore == true) {
+                System.out.println("es Profesor");
+                return "professore";
+            } else if (MessageDigest.isEqual(md5Ingresado.getBytes(), md5InGame.getBytes()) && studente == true) {
+                System.out.println("Es estudiante");
+                return "studente";
+            }
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(GUI_Login.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println("no es nadie");
         return "devulvan el oro";
     }
+    public int AlumnoIDConseguir() {
+    String variable = userInput.getText();
+    String sql = "SELECT id_alumno FROM alumno WHERE usuario_a = '"+variable+"'";
     
+    try (Connection conn = getConnection();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        
+        pstmt.setString(1, variable);
+        
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                int id = rs.getInt("id_alumno"); // Better to use column name
+                System.out.println("Found ID: " + id);
+                return id;
+            }
+            System.out.println("No student found with username: " + variable);
+            return 0;
+        }
+    } catch (SQLException e) {
+        System.err.println("Database error: " + e.getMessage());
+        return 0;
+    }}
     private void EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarActionPerformed
 
-    // verificarLogin es un metodo que devuelve un string, si la verificacion es exitosa entra a alumno
-    // add --> U need add the method for the teacher or admin
-    if(verificarLogin().equals("professore")){
-    // Fecha a janela atual  
-    SwingUtilities.getWindowAncestor(Enviar).dispose(); 
-    // Cria uma nova janela principal (GUI_Menu) JFRAME <-- this is important not a JPanel, create Menu who is JFrame  
-    // adittionally menu has the method showMe, which is why we use GUI_Menu and not another JFrame in this case  
-    mainP = new GUI_Menu(); 
-    // Cria um painel de notas do aluno  
-    GUI_Alumno_Notas notas = new GUI_Alumno_Notas(); 
-    // Define um ID de aluno na classe notas do aluno para poder verificar com o banco de dados
-    notas.setAlumnoID(182973); 
-    // Usa o método showMe() para mostrar o painel de notas na janela principal  
-    mainP.showMe(notas); 
-    // Torna a nova janela visível  
-    mainP.setVisible(true);}
-    else if(verificarLogin().equals("studente")){
-        // Añades aqui el metodo que necesitas
-    }else{
-        JOptionPane.showMessageDialog(null, "Nos robaron el cobre");
-    }
+        // verificarLogin es un metodo que devuelve un string, si la verificacion es exitosa entra a alumno
+        // add --> U need add the method for the teacher or admin
+        if (verificarLogin().equals("professore")) {
+            // Fecha a janela atual  
+            SwingUtilities.getWindowAncestor(Enviar).dispose();
+            // Cria uma nova janela principal (GUI_Menu) JFRAME <-- this is important not a JPanel, create Menu who is JFrame  
+            // adittionally menu has the method showMe, which is why we use GUI_Menu and not another JFrame in this case  
+            mainP = new GUI_Menu();
+            // Cria um painel de notas do aluno  
+            GUI_Alumno_NotasGeneral notas = new GUI_Alumno_NotasGeneral();
+            mainP.showMe(notas);
+            mainP.setVisible(true);
+            
+        } else if (verificarLogin().equals("studente")) {
+            // Fecha a janela atual  
+            SwingUtilities.getWindowAncestor(Enviar).dispose();
+            // Cria uma nova janela principal (GUI_Menu) JFRAME <-- this is important not a JPanel, create Menu who is JFrame  
+            // adittionally menu has the method showMe, which is why we use GUI_Menu and not another JFrame in this case  
+            mainP = new GUI_Menu();
+            // Cria um painel de notas do aluno  
+            GUI_Alumno_Notas notas = new GUI_Alumno_Notas();
+            // Define um ID de aluno na classe notas do aluno para poder verificar com o banco de dados
+            notas.setAlumnoID(AlumnoIDConseguir());
+            // Usa o método showMe() para mostrar o painel de notas na janela principal  
+            mainP.showMe(notas);
+            // Torna a nova janela visível  
+            mainP.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Nos robaron el cobre");
+        }
     }//GEN-LAST:event_EnviarActionPerformed
 
     private void olvidePwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_olvidePwdActionPerformed
@@ -273,11 +334,10 @@ public class GUI_Login extends javax.swing.JPanel {
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
         SwingUtilities.getWindowAncestor(botonVolver).dispose();
         mainP = new GUI_Menu();
-        
 
-    
+
     }//GEN-LAST:event_botonVolverActionPerformed
-    
+
     private void userInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userInputActionPerformed
