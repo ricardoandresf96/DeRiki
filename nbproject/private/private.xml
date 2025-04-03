@@ -4,9 +4,25 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/gui/GUI_Alumno_Notas.java</file>
-            <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/gui/GUI_Menu.java</file>
             <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/gui/GUI_Login.java</file>
+            <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/gui/GUI_Menu.java</file>
             <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/gui/GUI_Alumno_NotasGeneral.java</file>
+            <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/gui/mainPrueba.java</file>
+            <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/main/MenuMain.java</file>
+            <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/profesor/Profe_Menu_0_IniAntiguo.java</file>
+            <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/profesor/Profe_Menu_1_Altas.java</file>
+            <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/profesor/Profe_Menu_2_1_Bajas.java</file>
+            <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/profesor/Profe_Menu_2_2_Bajas.java</file>
+            <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/profesor/Profe_Menu_3_1_Modif.java</file>
+            <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/profesor/Profe_Menu_3_2_Modif.java</file>
+            <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/profesor/Profe_Menu_4_1_Listado.java</file>
+            <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/profesor/Profe_Menu_4_2_Listado.java</file>
+            <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/gui/Buscar.java</file>
+            <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/gui/ProfeMainV2.java</file>
+            <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/gui/ProfeAltas.java</file>
+            <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/gui/ProfeEliminar.java</file>
+            <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/gui/ProfeModificar.java</file>
+            <file>file:/C:/Users/SetyV/Documents/NetBeansProjects/DeRiki/src/gui/DatabaseManager.java</file>
         </group>
     </open-files>
 </project-private>

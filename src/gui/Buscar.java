@@ -5,7 +5,7 @@
 package gui;
 
 import javax.swing.JPanel;
-
+import java.sql.*;
 /**
  *
  * @author SetyV
@@ -139,11 +139,44 @@ public class Buscar extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public int buscadorID(){
+    try (Connection conn = DriverManager.getConnection(
+            "jdbc:mariadb://localhost:3306/gestion_notas", "root", "alumno");
+         PreparedStatement pstmt = conn.prepareStatement(
+                 "SELECT id_alumno FROM alumno WHERE numero_alumno = ?")) {
+        
+        // Establecer parámetro de forma segura
+        pstmt.setString(1, txtBuscar.getText().trim());
+        
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                int id = rs.getInt("id_alumno");
+                System.out.println("ID encontrado: " + id);
+                return id;
+            } else {
+                System.out.println("No se encontraron coincidencias para: " + txtBuscar.getText());
+                return 0;
+            }
+        }
+    } catch (SQLException e) {
+        System.err.println("Error de conexión SQL: " + e.getMessage());
+        e.printStackTrace();
+        return 0;
+    }
+
+    }
+    
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         if(getEstado()==1){
-        showMe(new ProfeEliminar());
+            ProfeEliminar profeE = new ProfeEliminar();
+            System.out.println(buscadorID());
+            profeE.setAlumnoID(buscadorID());
+            showMe(profeE);
         }else if (getEstado()==2){
-        showMe(new ProfeModificar());
+        ProfeModificar profeM = new ProfeModificar();
+            profeM.setAlumnoID(buscadorID());
+            showMe(profeM);
+        
         }
     }//GEN-LAST:event_botonBuscarActionPerformed
 
