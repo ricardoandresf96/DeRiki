@@ -293,20 +293,42 @@ public class GUI_Login extends javax.swing.JPanel {
         System.err.println("Database error: " + e.getMessage());
         return 0;
     }}
+    public int ProfeID() {
+    String variable = userInput.getText();
+    String sql = "SELECT id_profesor FROM profesor WHERE usuario_p = '"+variable+"'";
+    
+    try (Connection conn = getConnection();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        
+        pstmt.setString(1, variable);
+        
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                int id = rs.getInt("id_profesor"); // Better to use column name
+                System.out.println("Found ID: " + id);
+                return id;
+            }
+            System.out.println("No student found with username: " + variable);
+            return 0;
+        }
+    } catch (SQLException e) {
+        System.err.println("Database error: " + e.getMessage());
+        return 0;
+    }}
     private void EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarActionPerformed
 
         // verificarLogin es un metodo que devuelve un string, si la verificacion es exitosa entra a alumno
         // add --> U need add the method for the teacher or admin
         if (verificarLogin().equals("professore")) {
-            // Fecha a janela atual  
+
             SwingUtilities.getWindowAncestor(Enviar).dispose();
-            // Cria uma nova janela principal (GUI_Menu) JFRAME <-- this is important not a JPanel, create Menu who is JFrame  
-            // adittionally menu has the method showMe, which is why we use GUI_Menu and not another JFrame in this case  
-            mainP = new GUI_Menu();
+
             // Cria um painel de notas do aluno  
-            GUI_Alumno_NotasGeneral notas = new GUI_Alumno_NotasGeneral();
-            mainP.showMe(notas);
-            mainP.setVisible(true);
+            ProfeMainV2 profe = new ProfeMainV2();
+            profe.setVisible(true);
+            profe.setProfeID(ProfeID());
+          
+            
             
         } else if (verificarLogin().equals("studente")) {
             // Fecha a janela atual  

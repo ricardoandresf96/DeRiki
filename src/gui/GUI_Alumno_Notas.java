@@ -269,7 +269,7 @@ public class GUI_Alumno_Notas extends javax.swing.JPanel {
         });
 
         botonInglesd.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        botonInglesd.setText("Ingles para tontos");
+        botonInglesd.setText("Ingles for Dummies");
         botonInglesd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonInglesdActionPerformed(evt);
